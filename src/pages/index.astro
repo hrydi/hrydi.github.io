@@ -1,0 +1,50 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>ready, steady,.... go!!! 🚀</h1>
+			<p>👋 hallo semua!</p>
+			<p>
+				Ini adalah blog yang gue buat untuk berbagi pengalaman, tips, dan trik seputar dunia pemrograman. 
+				Di repo ini, kalian bakal nemuin berbagai topik menarik tentang <code>PHP</code>, <code>Node.js</code>, <code>Golang</code>, dan <code>Python</code>. 
+				Mulai dari tutorial pemula, sampai hal-hal seru yang gue temuin selama ngoding.
+			</p>
+			<p>
+				Apa yang Bisa Kamu Temukan di Sini?
+				<ul>
+					<li>
+						<div>PHP 🐘</div>
+						<div>Artikel seputar framework PHP, tips optimasi, dan best practices buat bikin aplikasi web yang scalable.</div>
+					</li>
+					<li>
+						<div>Node.js 🟢</div>
+						<div>Dari REST API sampai job queue management, semua yang kamu butuhin buat ngebangun aplikasi server-side yang cepat dan ringan.</div>
+					</li>
+					<li>
+						<div>Golang 🦦</div>
+						<div>Belajar Golang dari dasar, concurrency, sampai microservices dengan GoFiber dan tools lainnya.</div>
+					</li>
+					<li>
+						<div>Python 🐍</div>
+						<div>Pythonic way buat nulis kode yang bersih, pengolahan data, atau bikin web app sederhana dengan Flask/Django.</div>
+					</li>
+				</ul>
+			</p>
+			<p>Coding itu kadang bikin frustrasi, tapi juga bisa seru banget kalau lo tau apa yang lo lakuin. Gue berharap lewat blog ini, kita bisa sama-sama belajar dan berkembang jadi developer yang lebih baik.</p>
+			<p>Jadi, selamat datang di perjalanan ngoding gue! 🎉 Jangan sungkan buat kontribusi, bertanya, atau kasih saran biar kita bisa terus belajar bareng-bareng. Stay tuned, karena gue bakal update konten di repo ini secara rutin.</p>
+			<p>Happy coding! 💻</p>
+		</main>
+		<Footer />
+	</body>
+</html>
