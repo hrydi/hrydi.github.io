@@ -1,0 +1,106 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('portfolio')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Things I've Made — ${SITE_TITLE}`} description="Projects I've built" />
+		<style>
+			.card-link {
+				text-decoration: none;
+				color: inherit;
+				display: block;
+			}
+			.card-link:hover {
+				color: inherit;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+				gap: 1.5rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.card {
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 12px;
+				overflow: hidden;
+				background: white;
+				transition: box-shadow 0.2s ease;
+			}
+			.card:hover {
+				box-shadow: var(--box-shadow);
+			}
+			.card img {
+				display: block;
+				width: 100%;
+				height: 180px;
+				object-fit: cover;
+			}
+			.card-body {
+				padding: 1rem 1.25rem 1.25rem;
+			}
+			.card-body h3 {
+				margin: 0 0 0.4rem;
+				font-size: 1.25em;
+			}
+			.card-body p {
+				margin: 0 0 0.75rem;
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+				line-height: 1.5;
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem;
+				margin-bottom: 0.75rem;
+			}
+			.tag {
+				font-size: 0.75em;
+				padding: 0.15em 0.6em;
+				border-radius: 999px;
+				background: rgb(var(--gray-light));
+				color: rgb(var(--gray-dark));
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Things I've Made</h1>
+			<p>Projects I've built and experiments I've worked on.</p>
+			<ul class="grid">
+				{
+					projects.map((p) => (
+						<li class="card">
+							<a href={`/portfolio/${p.id}`} class="card-link">
+							{p.data.heroImage && <img width={720} height={360} src={p.data.heroImage} alt="" />}
+							<div class="card-body">
+								<h3>{p.data.title}</h3>
+								<p>{p.data.description}</p>
+								{p.data.tags && (
+									<div class="tags">
+										{p.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+									</div>
+								)}
+							</div>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>

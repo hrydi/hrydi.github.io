@@ -8,4 +8,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'https://hrydi.github.io',
 	integrations: [mdx(), sitemap()],
+	server: {
+		host: '0.0.0.0',
+		port: 4321
+	}
 });
