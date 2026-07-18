@@ -11,7 +11,7 @@ const projects = (await getCollection('portfolio')).sort(
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="id">
 	<head>
 		<BaseHead title={`Things I've Made — ${SITE_TITLE}`} description="Projects I've built" />
 		<style>
@@ -85,7 +85,7 @@ const projects = (await getCollection('portfolio')).sort(
 					projects.map((p) => (
 						<li class="card">
 							<a href={`/portfolio/${p.id}`} class="card-link">
-							{p.data.heroImage && <img width={720} height={360} src={p.data.heroImage} alt="" />}
+							{p.data.heroImage && <img width={720} height={360} src={p.data.heroImage} alt={p.data.title} />}
 							<div class="card-body">
 								<h3>{p.data.title}</h3>
 								<p>{p.data.description}</p>
