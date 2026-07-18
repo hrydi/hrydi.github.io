@@ -1,68 +1,66 @@
-# Astro Starter Kit: Blog
+# hrydi.github.io
 
-```sh
-npm create astro@latest -- --template blog
-```
+Personal blog & portfolio milik [hrydi](https://github.com/hrydi), dibangun pakai [Astro](https://astro.build). Live di **https://hrydi.github.io**.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+Isinya seputar PHP, Node.js, Golang, dan Python — sharing pengalaman, tips, dan eksperimen ngoding, plus showcase project-project yang pernah dibikin.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+- **Astro 7** + **MDX** — static site generation
+- **Content Collections** (`blog` & `portfolio`), schema-nya ada di [src/content.config.ts](src/content.config.ts)
+- **@astrojs/sitemap** — generate `sitemap-index.xml` otomatis
+- **@astrojs/rss** — RSS feed di `/rss.xml`
+- Deploy otomatis ke **GitHub Pages** lewat GitHub Actions ([.github/workflows/astro.yml](.github/workflows/astro.yml)) tiap push ke branch `master`
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Struktur Project
 
 ```text
-├── public/
+├── public/                 # static assets (gambar, favicon, robots.txt)
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
+│   ├── components/         # BaseHead, Header, Footer, dll.
+│   ├── content/
+│   │   ├── blog/           # tulisan blog (Markdown)
+│   │   └── portfolio/      # showcase project (Markdown)
+│   ├── content.config.ts   # schema frontmatter tiap collection
+│   ├── layouts/            # BlogPost.astro
+│   └── pages/              # routes: /, /blog, /portfolio, /about, /rss.xml
 ├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+└── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro bakal generate route otomatis dari file di `src/pages/`. Konten blog & portfolio dikelola lewat [Content Collections](https://docs.astro.build/en/guides/content-collections/), jadi frontmatter-nya type-checked sesuai schema di `src/content.config.ts`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## ✍️ Nulis Post Baru
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+**Blog** — bikin file `.md` baru di `src/content/blog/` dengan frontmatter:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```yaml
+---
+title: 'Judul Post'
+description: 'Deskripsi singkat buat meta tag & SEO'
+pubDate: 'Jul 19 2026'
+heroImage: '/nama-gambar.png' # opsional
+---
+```
+
+**Portfolio** — bikin file `.md` baru di `src/content/portfolio/`, ada field tambahan: `tags`, `liveUrl`, `repoUrl`.
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+Semua command dijalankan dari root project:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command                   | Action                                            |
+| :------------------------ | :------------------------------------------------ |
+| `npm install`              | Install dependencies                              |
+| `npm run dev`               | Jalanin dev server lokal di `localhost:4321`       |
+| `npm run build`             | Build production site ke `./dist/` (jalanin `astro check` dulu) |
+| `npm run preview`           | Preview hasil build lokal sebelum deploy           |
+| `npm run astro ...`         | Jalanin CLI command Astro, misal `astro add`       |
 
-## 👀 Want to learn more?
+## 🚢 Deployment
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Push ke branch `master` otomatis trigger workflow [astro.yml](.github/workflows/astro.yml): build situs lalu deploy ke GitHub Pages. Nggak perlu langkah manual tambahan.
 
 ## Credit
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Tema awal berdasarkan [Astro Blog Starter Kit](https://github.com/withastro/astro/tree/latest/examples/blog), yang terinspirasi dari [Bear Blog](https://github.com/HermanMartinus/bearblog/).
